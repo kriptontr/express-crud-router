@@ -25,7 +25,7 @@ export declare const parseQuery: (query: any, filtersOption?: FiltersOption | un
     filter: {
         [x: string]: any;
     };
-    order: [[string, string]];
+    order: [[string, string]] | undefined;
     q: any;
 };
 export declare type FiltersOption = Record<string, (value: any) => any>;
