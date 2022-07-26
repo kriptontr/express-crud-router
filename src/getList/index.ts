@@ -66,7 +66,7 @@ export const parseQuery = (query: any, filtersOption?: FiltersOption) => {
     offset: from,
     limit: to - from + 1,
     filter: getFilter(filters, filtersOption),
-    order: [sort ? JSON.parse(sort) : []] as [[string, string]],
+    order: sort ? [ JSON.parse(sort)] as [[string, string]]: undefined,
     q,
   }
 }
