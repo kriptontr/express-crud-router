@@ -46,7 +46,13 @@ export const getMany = <R>(
           error: 'Search has not been implemented yet for this resource',
         })
       }
-      const { rows, count } = await doGetSearchList(q, limit, filter, {req, res})
+      const { rows, count } = await doGetSearchList({
+        filter,
+        limit,
+        offset,
+        order,
+        q
+      }, {req, res})
       setGetListHeaders(res, offset, count, rows.length)
       res.json(rows)
     }
