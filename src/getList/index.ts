@@ -8,6 +8,7 @@ export type GetList<R> = (conf: {
   limit: number
   offset: number
   order: Array<[string, string]>
+  q?: string | undefined
 }, opts?: {
   req: Request
   res: Response
@@ -46,7 +47,7 @@ export const getMany = <R>(
           error: 'Search has not been implemented yet for this resource',
         })
       }
-      const { rows, count } = await doGetSearchList({
+      const { rows, count } = await doGetFilteredList({
         filter,
         limit,
         offset,
@@ -72,7 +73,7 @@ export const parseQuery = (query: any, filtersOption?: FiltersOption) => {
     offset: from,
     limit: to - from + 1,
     filter: getFilter(filters, filtersOption),
-    order: sort ? [ JSON.parse(sort)] as [[string, string]]: undefined,
+    order: sort ? [ JSON.parse(sort)] as [[string, string]]: [],
     q,
   }
 }

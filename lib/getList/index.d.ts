@@ -4,6 +4,7 @@ export declare type GetList<R> = (conf: {
     limit: number;
     offset: number;
     order: Array<[string, string]>;
+    q?: string | undefined;
 }, opts?: {
     req: Request;
     res: Response;
@@ -25,7 +26,7 @@ export declare const parseQuery: (query: any, filtersOption?: FiltersOption | un
     filter: {
         [x: string]: any;
     };
-    order: [[string, string]] | undefined;
+    order: [[string, string]] | never[];
     q: any;
 };
 export declare type FiltersOption = Record<string, (value: any) => any>;
